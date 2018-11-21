@@ -75,3 +75,22 @@ Control A and D
 ```
 screen -r 
 ```
+
+## Fixing "paired ends have different names"
+I had a few cases where there's an error in the files, indicating that the paired ends have different names. This is what the error looks like: 
+```
+[mem_sam_pe] paired reads have different names: "SRR3239806.1.1", "SRR3239806.1.2"
+```
+I found a way to solve this problem is to use BBMap to change the names of the headers in the fastqfile:
+
+
+1.) Download BBMap
+```
+tar xvzf BBMap_38.31.tar.gz
+```
+
+2.) Use the bbrename script: 
+
+```
+
+/home/hennelly/bin/bbmap/bbrename.sh in=/home/hennelly/SRR7107906_1.fastq.gz out=/home/hennelly/SRR7107906_1.fixed.fastq.gz prefix=scaffold
